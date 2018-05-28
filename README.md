@@ -1,6 +1,9 @@
 # Chinese Character Drawing Game
 A Chinese character drawing game utilizing optical character recognition (OCR), microservice architecture, and gamified user results.
 
+```diff
+- Work-in-Progress 
+```
 
 ## Project architecture
 This project is divided into three tiers:
