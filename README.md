@@ -40,7 +40,7 @@ cd chinese-character-game
 # Install node dependencies for character microservice
 cd server/character; npm install
 
-# Install node dependencies for character microservice
+# Install node dependencies for gamification microservice
 cd ../gamification; npm install
 
 # Launch all microservices and rabbitmq
