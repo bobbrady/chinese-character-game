@@ -1,9 +1,7 @@
 # Chinese Character Drawing Game
 A Chinese character drawing game utilizing optical character recognition (OCR), microservice architecture, and gamified user results.
 
-```diff
-- Work-in-Progress 
-```
+This work is in progress..  It is not fully implemented, but the master branch should run without errors.
 
 ## Project architecture
 This project is divided into three tiers:
@@ -47,6 +45,6 @@ cd server/character; npm install
 cd ../gamification; npm install
 
 # Launch all microservices and rabbitmq
-cd ..
+cd ../..
 docker-compose up
 ```
