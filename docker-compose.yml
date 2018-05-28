@@ -1,0 +1,44 @@
+version: "3.2"
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - devnet
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:15672"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+
+  character:
+    build: ./server/character
+    # Wait until RabbitMQ is available
+    command: bash -c "while ! curl -s rabbitmq:15672 > /dev/null;
+                      do echo waiting for rabbitmq to start...; sleep 3; done;
+                      echo rabbitmq is up...;
+                      node server.js"
+    # Map port 3000 on the host machine to port 3000 of the container.
+    ports:
+      - "3000:3000"
+    networks:
+      - devnet
+
+  gamification:
+    build: ./server/gamification
+    # Wait until RabbitMQ is available
+    command: bash -c "while ! curl -s rabbitmq:15672 > /dev/null;
+                      do echo waiting for rabbitmq to start...; sleep 3; done;
+                      echo rabbitmq is up...;
+                      node server.js"
+    # Map port 3000 on the host machine to port 3000 of the container.
+    ports:
+      - "3010:3010"
+    networks:
+      - devnet
+
+networks:
+  devnet:
+    driver: bridge
